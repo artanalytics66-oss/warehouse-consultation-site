@@ -62,7 +62,7 @@ const Index = () => {
             <nav className="hidden lg:flex items-center gap-6">
               <button
                 onClick={() => scrollToSection('about')}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
+                className={`text-sm font-medium transition-colors hover:text-primary whitespace-nowrap ${
                   activeSection === 'about' ? 'text-primary' : 'text-foreground'
                 }`}
               >
