@@ -56,7 +56,7 @@ const Index = () => {
                 Профессиональная консультация в складской логистике
               </h1>
               <p className="text-sm text-muted-foreground hidden md:block">
-                Глубокая заморозка и строительство складов — ваш надежный партнер
+                Складская логистика продуктов глубокой заморозки
               </p>
             </div>
             <nav className="hidden lg:flex items-center gap-6">
