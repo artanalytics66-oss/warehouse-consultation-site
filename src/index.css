@@ -108,3 +108,21 @@
     scroll-behavior: smooth;
   }
 }
+
+@keyframes expandContent {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    max-height: 2000px;
+    transform: translateY(0);
+  }
+}
+
+.expand-animation {
+  animation: expandContent 0.5s ease-out forwards;
+  overflow: hidden;
+}
