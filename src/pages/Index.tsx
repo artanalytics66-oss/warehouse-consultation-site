@@ -160,12 +160,6 @@ const Index = () => {
               <Button onClick={() => scrollToSection('contact')} size="sm" className="text-xs px-3 py-2">
                 Записаться на консультацию
               </Button>
-              <a href="/admin">
-                <Button variant="outline" size="sm" className="text-xs px-3 py-2">
-                  <Icon name="Settings" size={14} className="mr-1" />
-                  Админ
-                </Button>
-              </a>
             </nav>
             <Button
               variant="ghost"
