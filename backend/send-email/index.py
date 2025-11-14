@@ -1,8 +1,11 @@
 import json
 import smtplib
 import os
+import urllib.request
+import base64
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from email.mime.image import MIMEImage
 from typing import Dict, Any
 
 def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
@@ -96,6 +99,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             server.login(sender_email, smtp_password)
             server.send_message(msg)
         
+        send_client_email(email, name, sender_email, smtp_password)
+        
         return {
             'statusCode': 200,
             'headers': {
@@ -113,3 +118,44 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             },
             'body': json.dumps({'error': f'Failed to send email: {str(e)}'})
         }
+
+def send_client_email(client_email: str, client_name: str, sender_email: str, smtp_password: str):
+    '''Send PDF guide to client'''
+    msg = MIMEMultipart('mixed')
+    msg['Subject'] = 'Спасибо за заявку! Ваш бонус - PDF-буклет'
+    msg['From'] = sender_email
+    msg['To'] = client_email
+    
+    html_body = f'''
+    <html>
+      <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+        <h2 style="color: #2563eb;">Здравствуйте, {client_name}!</h2>
+        <p>Благодарим вас за обращение!</p>
+        <p>Как и обещали, высылаем вам <strong>PDF-буклет "5 ключевых ошибок при строительстве складов с глубокой заморозкой"</strong>.</p>
+        <p>В нем вы найдете практические рекомендации, которые помогут избежать дорогостоящих ошибок при проектировании и строительстве.</p>
+        <img src="cid:pdf_preview" style="max-width: 400px; margin: 20px 0; border-radius: 8px;" />
+        <p style="margin-top: 20px;">Мы свяжемся с вами в ближайшее время для обсуждения вашего запроса.</p>
+        <p style="color: #666; font-size: 14px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
+          С уважением,<br>
+          Команда консультантов по складской логистике
+        </p>
+      </body>
+    </html>
+    '''
+    
+    text_part = MIMEText(html_body, 'html')
+    msg.attach(text_part)
+    
+    try:
+        with urllib.request.urlopen('https://cdn.poehali.dev/projects/5a8ac4f2-e421-48be-88da-a92f22758e9f/files/cd1904c2-ffdb-4b90-9c1d-13db428806ea.jpg') as response:
+            image_data = response.read()
+            image_part = MIMEImage(image_data, name='buklet_preview.jpg')
+            image_part.add_header('Content-ID', '<pdf_preview>')
+            image_part.add_header('Content-Disposition', 'inline', filename='buklet_preview.jpg')
+            msg.attach(image_part)
+    except:
+        pass
+    
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+        server.login(sender_email, smtp_password)
+        server.send_message(msg)
