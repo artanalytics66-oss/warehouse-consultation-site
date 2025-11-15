@@ -356,7 +356,7 @@ const Index = () => {
       <section 
         className="py-20 px-4"
         style={{
-          backgroundColor: '#afdbfd'
+          backgroundColor: 'rgba(175, 219, 253, 0.5)'
         }}
       >
         <div className="container mx-auto max-w-6xl">
