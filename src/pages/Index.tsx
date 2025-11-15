@@ -117,7 +117,7 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex flex-col">
-              <h1 className="text-xl md:text-2xl font-heading font-bold text-secondary">
+              <h1 className="text-base sm:text-lg md:text-2xl font-heading font-bold text-secondary leading-tight">
                 Профессиональная консультация в складской логистике
               </h1>
               <p className="text-sm text-muted-foreground hidden md:block">
@@ -222,7 +222,7 @@ const Index = () => {
 
       <section
         id="about"
-        className="pt-32 pb-20 px-4"
+        className="pt-24 md:pt-32 pb-12 md:pb-20 px-4"
         style={{
           backgroundImage: 'linear-gradient(rgba(245, 247, 250, 0.95), rgba(245, 247, 250, 0.95)), url(https://cdn.poehali.dev/projects/5a8ac4f2-e421-48be-88da-a92f22758e9f/files/3068ff5d-259c-4893-9bcb-a8dbb7616cdc.jpg)',
           backgroundSize: 'cover',
@@ -239,10 +239,10 @@ const Index = () => {
               />
             </div>
             <div className="animate-fade-in">
-              <h2 className="text-4xl font-heading font-bold text-secondary mb-6">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-secondary mb-6">
                 Обо мне
               </h2>
-              <p className="text-lg text-foreground mb-6 leading-relaxed">
+              <p className="text-base md:text-lg text-foreground mb-6 leading-relaxed">
                 18+ лет опыта в проектировании и оптимизации низкотемпературных складов (–20 °C…+5 °C). 
                 Консультирую по выбору оборудования, внедрению WMS, автоматизации товарных потоков и мотивации персонала.
               </p>
@@ -274,13 +274,13 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="services" className="py-20 px-4 bg-white">
+      <section id="services" className="py-12 md:py-20 px-4 bg-white">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-4xl font-heading font-bold text-secondary mb-4">
+          <div className="text-center mb-12 md:mb-16 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-secondary mb-4">
               Что я предлагаю?
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
               Комплексные консультационные услуги для оптимизации вашего бизнеса
             </p>
           </div>
@@ -291,10 +291,10 @@ const Index = () => {
                 <div className="bg-primary/10 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
                   <Icon name="Snowflake" className="text-primary" size={32} />
                 </div>
-                <h3 className="text-2xl font-heading font-bold text-secondary mb-4">
+                <h3 className="text-xl md:text-2xl font-heading font-bold text-secondary mb-4">
                   Глубокая заморозка
                 </h3>
-                <p className="text-foreground leading-relaxed mb-6">
+                <p className="text-sm md:text-base text-foreground leading-relaxed mb-6">
                   Консультации по выбору оборудования, созданию холодильных зон и оптимизации энергопотребления.
                 </p>
                 <Button
@@ -312,10 +312,10 @@ const Index = () => {
                 <div className="bg-primary/10 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
                   <Icon name="Building2" className="text-primary" size={32} />
                 </div>
-                <h3 className="text-2xl font-heading font-bold text-secondary mb-4">
+                <h3 className="text-xl md:text-2xl font-heading font-bold text-secondary mb-4">
                   Строительство склада
                 </h3>
-                <p className="text-foreground leading-relaxed mb-6">
+                <p className="text-sm md:text-base text-foreground leading-relaxed mb-6">
                   Расчет зон приемки, разгрузки, тамбуров, камер хранения, комплектации и технических помещений с учетом материалов, и автоматизации для эффективной работы в холоде.
                 </p>
                 <Button
@@ -333,10 +333,10 @@ const Index = () => {
                 <div className="bg-primary/10 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
                   <Icon name="LineChart" className="text-primary" size={32} />
                 </div>
-                <h3 className="text-2xl font-heading font-bold text-secondary mb-4">
+                <h3 className="text-xl md:text-2xl font-heading font-bold text-secondary mb-4">
                   Комплексная консультация
                 </h3>
-                <p className="text-foreground leading-relaxed mb-6">
+                <p className="text-sm md:text-base text-foreground leading-relaxed mb-6">
                   Анализ текущих процессов и разработка стратегии развития складской логистики 
                   с учетом бюджета и сроков.
                 </p>
@@ -354,14 +354,14 @@ const Index = () => {
       </section>
 
       <section 
-        className="py-20 px-4"
+        className="py-12 md:py-20 px-4"
         style={{
           backgroundColor: 'rgba(175, 219, 253, 0.5)'
         }}
       >
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-4xl font-heading font-bold text-secondary mb-4">
+          <div className="text-center mb-12 md:mb-16 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-secondary mb-4">
               Как я работаю?
             </h2>
             <p className="text-lg text-muted-foreground">
@@ -375,7 +375,7 @@ const Index = () => {
                 <span className="text-2xl font-bold text-primary">1</span>
               </div>
               <CardContent className="p-8 pt-20">
-                <h3 className="text-2xl font-heading font-bold text-secondary mb-4">
+                <h3 className="text-xl md:text-2xl font-heading font-bold text-secondary mb-4">
                   Анализ потребностей
                 </h3>
                 <p className="text-foreground leading-relaxed">
@@ -389,7 +389,7 @@ const Index = () => {
                 <span className="text-2xl font-bold text-primary">2</span>
               </div>
               <CardContent className="p-8 pt-20">
-                <h3 className="text-2xl font-heading font-bold text-secondary mb-4">
+                <h3 className="text-xl md:text-2xl font-heading font-bold text-secondary mb-4">
                   Оперативное предложение
                 </h3>
                 <p className="text-foreground leading-relaxed">
@@ -403,7 +403,7 @@ const Index = () => {
                 <span className="text-2xl font-bold text-primary">3</span>
               </div>
               <CardContent className="p-8 pt-20">
-                <h3 className="text-2xl font-heading font-bold text-secondary mb-4">
+                <h3 className="text-xl md:text-2xl font-heading font-bold text-secondary mb-4">
                   Реализация
                 </h3>
                 <p className="text-foreground leading-relaxed">
@@ -417,7 +417,7 @@ const Index = () => {
 
       <section
         id="articles"
-        className="py-20 px-4"
+        className="py-12 md:py-20 px-4"
         style={{
           backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(https://cdn.poehali.dev/files/5404bcef-57f5-41da-b8af-43577a237bd8.jpg)',
           backgroundSize: 'cover',
@@ -425,8 +425,8 @@ const Index = () => {
         }}
       >
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-4xl font-heading font-bold text-secondary mb-4">
+          <div className="text-center mb-12 md:mb-16 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-secondary mb-4">
               Полезные материалы по теме
             </h2>
             <p className="text-lg" style={{ color: '#3d2007' }}>
@@ -442,10 +442,10 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="contact" className="py-20 px-4 bg-white">
+      <section id="contact" className="py-12 md:py-20 px-4 bg-white">
         <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-4xl font-heading font-bold text-secondary mb-4">
+          <div className="text-center mb-12 md:mb-16 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-secondary mb-4">
               Свяжитесь со мной
             </h2>
             <p className="text-lg text-muted-foreground">
