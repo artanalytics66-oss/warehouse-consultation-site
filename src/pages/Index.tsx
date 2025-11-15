@@ -424,7 +424,7 @@ const Index = () => {
             <h2 className="text-4xl font-heading font-bold text-secondary mb-4">
               Полезные материалы по теме
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg" style={{ color: '#f0b37e' }}>
               Статьи о складской логистике глубокой заморозки и не только.
             </p>
           </div>
