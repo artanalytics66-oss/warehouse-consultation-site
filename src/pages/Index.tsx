@@ -356,9 +356,7 @@ const Index = () => {
       <section 
         className="py-20 px-4"
         style={{
-          backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url(https://cdn.poehali.dev/files/af957f88-ecf8-4df9-bc46-cc473ff45161.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundColor: '#afdbfd'
         }}
       >
         <div className="container mx-auto max-w-6xl">
