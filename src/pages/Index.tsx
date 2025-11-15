@@ -353,7 +353,14 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-gradient-to-br from-primary/5 to-background">
+      <section 
+        className="py-20 px-4"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url(https://cdn.poehali.dev/files/af957f88-ecf8-4df9-bc46-cc473ff45161.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-4xl font-heading font-bold text-secondary mb-4">
