@@ -469,9 +469,6 @@ const Index = () => {
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-secondary mb-4">
               Свяжитесь со мной
             </h2>
-            <p className="text-lg text-muted-foreground">
-              Получите бесплатную консультацию и PDF-буклет о ключевых ошибках при строительстве складов
-            </p>
           </div>
 
           <Card className="animate-fade-in">
