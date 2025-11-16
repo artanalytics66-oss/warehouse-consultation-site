@@ -370,7 +370,7 @@ const Index = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="relative overflow-hidden transition-all hover:shadow-xl hover:-translate-y-1 animate-fade-in">
+            <Card className="relative overflow-hidden transition-all hover:shadow-xl hover:-translate-y-1 scroll-fade-in delay-1">
               <div 
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
@@ -391,7 +391,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="relative overflow-hidden transition-all hover:shadow-xl hover:-translate-y-1 animate-fade-in">
+            <Card className="relative overflow-hidden transition-all hover:shadow-xl hover:-translate-y-1 scroll-fade-in delay-2">
               <div 
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
@@ -412,7 +412,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="relative overflow-hidden transition-all hover:shadow-xl hover:-translate-y-1 animate-fade-in">
+            <Card className="relative overflow-hidden transition-all hover:shadow-xl hover:-translate-y-1 scroll-fade-in delay-3">
               <div 
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
