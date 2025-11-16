@@ -498,15 +498,6 @@ const Index = () => {
                     required
                   />
                 </div>
-                <div className="flex items-start gap-3 p-4 bg-primary/5 rounded-lg">
-                  <Icon name="Gift" className="text-primary mt-1 flex-shrink-0" size={24} />
-                  <div>
-                    <p className="font-semibold text-secondary mb-1">Бонус при отправке заявки!</p>
-                    <p className="text-sm text-foreground">
-                      Получите PDF-буклет "5 ключевых ошибок при строительстве складов с глубокой заморозкой"
-                    </p>
-                  </div>
-                </div>
                 <Button type="submit" size="lg" className="w-full">
                   Отправить запрос
                   <Icon name="Send" className="ml-2" size={18} />
