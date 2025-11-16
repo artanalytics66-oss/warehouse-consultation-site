@@ -413,10 +413,17 @@ const Index = () => {
             </Card>
 
             <Card className="relative overflow-hidden transition-all hover:shadow-xl hover:-translate-y-1 animate-fade-in">
+              <div 
+                className="absolute inset-0 bg-cover bg-center"
+                style={{
+                  backgroundImage: 'url(https://cdn.poehali.dev/files/1c7c7c53-42fc-411e-bdc9-16f41c3c30df.jpg)',
+                  opacity: 0.15
+                }}
+              />
               <div className="absolute top-6 right-6 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                 <span className="text-2xl font-bold text-primary">3</span>
               </div>
-              <CardContent className="p-8 pt-20">
+              <CardContent className="relative p-8 pt-20">
                 <h3 className="text-xl md:text-2xl font-heading font-bold text-secondary mb-4">
                   Реализация
                 </h3>
