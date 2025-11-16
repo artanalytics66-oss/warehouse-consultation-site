@@ -550,7 +550,7 @@ const Index = () => {
                   onClick={() => scrollToSection('about')}
                   className="text-white/80 hover:text-white transition-colors text-left"
                 >
-                  О нас
+                  Обо мне
                 </button>
                 <button
                   onClick={() => scrollToSection('services')}
@@ -575,9 +575,9 @@ const Index = () => {
             <div>
               <h4 className="font-heading font-semibold mb-4">Контакты</h4>
               <div className="space-y-2 text-white/80">
-                <p>+7 (495) 123-45-67</p>
-                <p>info@coldlogistics.ru</p>
-                <p>г. Москва, ул. Промышленная, д. 10</p>
+                <p>+79126734195</p>
+                <p>artanalytics66@gmail.com</p>
+                <p>г. Екатеринбург</p>
               </div>
             </div>
           </div>
