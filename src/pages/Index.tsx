@@ -416,7 +416,7 @@ const Index = () => {
               <div 
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
-                  backgroundImage: 'url(https://cdn.poehali.dev/files/1c7c7c53-42fc-411e-bdc9-16f41c3c30df.jpg)',
+                  backgroundImage: 'url(https://cdn.poehali.dev/files/72862d23-53dd-436d-9eea-d90121519bf8.jpeg)',
                   opacity: 0.15
                 }}
               />
