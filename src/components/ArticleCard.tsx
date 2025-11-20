@@ -29,11 +29,13 @@ const ArticleCard = ({ article }: ArticleCardProps) => {
           <p>{article.short_description}</p>
           
           {expanded && (
-            <div className="expand-animation">
+            <div className="expand-animation mt-4 pt-4 border-t">
               <div 
-                className="prose prose-sm max-w-none"
-                dangerouslySetInnerHTML={{ __html: article.full_content.replace(/\n/g, '<br/>') }}
-              />
+                className="prose prose-sm max-w-none whitespace-pre-wrap"
+                style={{ maxHeight: 'none' }}
+              >
+                {article.full_content}
+              </div>
             </div>
           )}
         </div>
