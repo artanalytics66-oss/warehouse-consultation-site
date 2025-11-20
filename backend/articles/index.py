@@ -42,9 +42,9 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             article_id = event.get('queryStringParameters', {}).get('id')
             
             if article_id:
+                article_id_safe = str(article_id).replace("'", "''")
                 cur.execute(
-                    "SELECT * FROM articles WHERE id = %s",
-                    (article_id,)
+                    f"SELECT * FROM articles WHERE id = '{article_id_safe}'"
                 )
                 article = cur.fetchone()
                 if not article:
@@ -72,20 +72,19 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         elif method == 'POST':
             body = json.loads(event.get('body', '{}'))
             
+            title = str(body.get('title', '')).replace("'", "''")
+            short_desc = str(body.get('short_description', '')).replace("'", "''")
+            full_content = str(body.get('full_content', '')).replace("'", "''")
+            icon = str(body.get('icon', 'FileText')).replace("'", "''")
+            display_order = int(body.get('display_order', 0))
+            is_published = bool(body.get('is_published', True))
+            
             cur.execute(
-                """
+                f"""
                 INSERT INTO articles (title, short_description, full_content, icon, display_order, is_published)
-                VALUES (%s, %s, %s, %s, %s, %s)
+                VALUES ('{title}', '{short_desc}', '{full_content}', '{icon}', {display_order}, {is_published})
                 RETURNING id, title, short_description, full_content, icon, created_at, display_order, is_published
-                """,
-                (
-                    body.get('title'),
-                    body.get('short_description'),
-                    body.get('full_content'),
-                    body.get('icon', 'FileText'),
-                    body.get('display_order', 0),
-                    body.get('is_published', True)
-                )
+                """
             )
             article = cur.fetchone()
             conn.commit()
@@ -107,23 +106,22 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     'body': json.dumps({'error': 'Article ID required'})
                 }
             
+            title = str(body.get('title', '')).replace("'", "''")
+            short_desc = str(body.get('short_description', '')).replace("'", "''")
+            full_content = str(body.get('full_content', '')).replace("'", "''")
+            icon = str(body.get('icon', 'FileText')).replace("'", "''")
+            display_order = int(body.get('display_order', 0))
+            is_published = bool(body.get('is_published', True))
+            article_id_safe = str(article_id).replace("'", "''")
+            
             cur.execute(
-                """
+                f"""
                 UPDATE articles 
-                SET title = %s, short_description = %s, full_content = %s, 
-                    icon = %s, display_order = %s, is_published = %s, updated_at = CURRENT_TIMESTAMP
-                WHERE id = %s
+                SET title = '{title}', short_description = '{short_desc}', full_content = '{full_content}', 
+                    icon = '{icon}', display_order = {display_order}, is_published = {is_published}, updated_at = CURRENT_TIMESTAMP
+                WHERE id = '{article_id_safe}'
                 RETURNING id, title, short_description, full_content, icon, updated_at, display_order, is_published
-                """,
-                (
-                    body.get('title'),
-                    body.get('short_description'),
-                    body.get('full_content'),
-                    body.get('icon'),
-                    body.get('display_order'),
-                    body.get('is_published'),
-                    article_id
-                )
+                """
             )
             article = cur.fetchone()
             conn.commit()
@@ -152,7 +150,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     'body': json.dumps({'error': 'Article ID required'})
                 }
             
-            cur.execute("DELETE FROM articles WHERE id = %s RETURNING id", (article_id,))
+            article_id_safe = str(article_id).replace("'", "''")
+            cur.execute(f"DELETE FROM articles WHERE id = '{article_id_safe}' RETURNING id")
             deleted = cur.fetchone()
             conn.commit()
             
