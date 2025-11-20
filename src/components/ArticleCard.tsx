@@ -15,6 +15,31 @@ interface ArticleCardProps {
 
 const ArticleCard = ({ article }: ArticleCardProps) => {
   const [expanded, setExpanded] = useState(false);
+  const [fullContent, setFullContent] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const loadFullContent = async () => {
+    if (fullContent || loading) return;
+    
+    setLoading(true);
+    try {
+      const response = await fetch(`https://functions.poehali.dev/941f1118-e5bc-48a9-8a2d-ff4bd917dc4b?id=${article.id}`);
+      const data = await response.json();
+      setFullContent(data.full_content || article.full_content);
+    } catch (error) {
+      console.error('Failed to load full article:', error);
+      setFullContent(article.full_content);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleExpand = () => {
+    if (!expanded) {
+      loadFullContent();
+    }
+    setExpanded(!expanded);
+  };
 
   const formatContent = (content: string) => {
     const urlRegex = /(https?:\/\/[^\s]+)/g;
@@ -84,14 +109,18 @@ const ArticleCard = ({ article }: ArticleCardProps) => {
           
           {expanded && (
             <div className="expand-animation mt-4 pt-4 border-t space-y-2">
-              {formatContent(article.full_content)}
+              {loading ? (
+                <p className="text-muted-foreground">Загрузка...</p>
+              ) : (
+                formatContent(fullContent || article.full_content)
+              )}
             </div>
           )}
         </div>
         <Button 
           variant="link" 
           className="p-0 h-auto"
-          onClick={() => setExpanded(!expanded)}
+          onClick={handleExpand}
         >
           {expanded ? 'Свернуть' : 'Читать далее'} 
           <Icon name={expanded ? "ChevronUp" : "ArrowRight"} className="ml-2" size={16} />

@@ -51,12 +51,14 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     return {
                         'statusCode': 404,
                         'headers': headers,
-                        'body': json.dumps({'error': 'Article not found'})
+                        'body': json.dumps({'error': 'Article not found'}),
+                        'isBase64Encoded': False
                     }
                 return {
                     'statusCode': 200,
                     'headers': headers,
-                    'body': json.dumps(dict(article))
+                    'body': json.dumps(dict(article), default=str, ensure_ascii=False),
+                    'isBase64Encoded': False
                 }
             else:
                 cur.execute(
@@ -66,7 +68,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 return {
                     'statusCode': 200,
                     'headers': headers,
-                    'body': json.dumps([dict(row) for row in articles], default=str)
+                    'body': json.dumps([dict(row) for row in articles], default=str, ensure_ascii=False),
+                    'isBase64Encoded': False
                 }
         
         elif method == 'POST':
@@ -92,7 +95,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             return {
                 'statusCode': 201,
                 'headers': headers,
-                'body': json.dumps(dict(article), default=str)
+                'body': json.dumps(dict(article), default=str, ensure_ascii=False),
+                'isBase64Encoded': False
             }
         
         elif method == 'PUT':
@@ -136,7 +140,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             return {
                 'statusCode': 200,
                 'headers': headers,
-                'body': json.dumps(dict(article), default=str)
+                'body': json.dumps(dict(article), default=str, ensure_ascii=False),
+                'isBase64Encoded': False
             }
         
         elif method == 'DELETE':
@@ -165,13 +170,15 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             return {
                 'statusCode': 200,
                 'headers': headers,
-                'body': json.dumps({'success': True, 'id': article_id})
+                'body': json.dumps({'success': True, 'id': article_id}),
+                'isBase64Encoded': False
             }
         
         return {
             'statusCode': 405,
             'headers': headers,
-            'body': json.dumps({'error': 'Method not allowed'})
+            'body': json.dumps({'error': 'Method not allowed'}),
+            'isBase64Encoded': False
         }
     
     finally:
