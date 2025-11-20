@@ -155,12 +155,6 @@ const ArticleView = () => {
               {formatContent(article.full_content)}
             </div>
           </div>
-
-          <div className="mt-12 pt-8 border-t text-center">
-            <Button onClick={() => navigate('/#contact')} size="lg">
-              Записаться на консультацию
-            </Button>
-          </div>
         </div>
       </main>
 

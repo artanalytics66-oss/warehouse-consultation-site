@@ -102,10 +102,11 @@ const ArticleCard = ({ article }: ArticleCardProps) => {
           <Button 
             variant="default"
             size="sm"
+            className="text-xs px-3 py-1.5 scale-[0.85]"
             onClick={() => navigate(`/article/${article.id}`)}
           >
             Читать полностью
-            <Icon name="ExternalLink" className="ml-2" size={16} />
+            <Icon name="ExternalLink" className="ml-1" size={14} />
           </Button>
         </div>
       </CardContent>
