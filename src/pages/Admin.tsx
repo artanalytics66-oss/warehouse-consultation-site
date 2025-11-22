@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import Icon from '@/components/ui/icon';
 import { useToast } from '@/hooks/use-toast';
 
-const API_URL = 'http://ваш-домен.ru/admin/api.php';
+const API_URL = 'https://skladconsulting.ru/admin/api.php';
 
 interface Article {
   id?: number;

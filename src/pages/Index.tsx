@@ -18,7 +18,7 @@ interface Article {
   created_at?: string;
 }
 
-const API_URL = 'http://ваш-домен.ru/admin/api.php';
+const API_URL = 'https://skladconsulting.ru/admin/api.php';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('');
