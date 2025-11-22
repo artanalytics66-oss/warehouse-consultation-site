@@ -7,18 +7,20 @@ import { Label } from '@/components/ui/label';
 import Icon from '@/components/ui/icon';
 import { useToast } from '@/hooks/use-toast';
 
-const API_URL = 'https://functions.poehali.dev/941f1118-e5bc-48a9-8a2d-ff4bd917dc4b';
+const API_URL = 'http://ваш-домен.ru/admin/api.php';
 
 interface Article {
   id?: number;
   title: string;
+  category: string;
   short_description: string;
   full_content: string;
-  icon: string;
-  display_order: number;
-  is_published: boolean;
+  image_url?: string;
+  created_at?: string;
+  updated_at?: string;
 }
 
+const ADMIN_LOGIN = 'admin66L';
 const ADMIN_PASSWORD = '123QWE!asd';
 
 const Admin = () => {
@@ -28,11 +30,10 @@ const Admin = () => {
   const [editingArticle, setEditingArticle] = useState<Article | null>(null);
   const [formData, setFormData] = useState<Article>({
     title: '',
+    category: 'Аналитика',
     short_description: '',
     full_content: '',
-    icon: 'FileText',
-    display_order: 0,
-    is_published: true
+    image_url: ''
   });
   const { toast } = useToast();
 
@@ -72,7 +73,10 @@ const Admin = () => {
       
       const response = await fetch(API_URL, {
         method,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'X-Admin-Auth': `${ADMIN_LOGIN}:${ADMIN_PASSWORD}`
+        },
         body: JSON.stringify(body)
       });
 
@@ -97,7 +101,10 @@ const Admin = () => {
     if (!confirm('Удалить статью?')) return;
     
     try {
-      await fetch(`${API_URL}?id=${id}`, { method: 'DELETE' });
+      await fetch(`${API_URL}?id=${id}`, { 
+        method: 'DELETE',
+        headers: { 'X-Admin-Auth': `${ADMIN_LOGIN}:${ADMIN_PASSWORD}` }
+      });
       toast({ title: 'Успех', description: 'Статья удалена' });
       loadArticles();
     } catch (error) {
@@ -118,11 +125,10 @@ const Admin = () => {
     setEditingArticle(null);
     setFormData({
       title: '',
+      category: 'Аналитика',
       short_description: '',
       full_content: '',
-      icon: 'FileText',
-      display_order: 0,
-      is_published: true
+      image_url: ''
     });
   };
 
@@ -262,35 +268,31 @@ const Admin = () => {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="icon">Иконка</Label>
-                    <Input
-                      id="icon"
-                      value={formData.icon}
-                      onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
-                      placeholder="FileText"
-                    />
+                    <Label htmlFor="category">Категория</Label>
+                    <select
+                      id="category"
+                      value={formData.category}
+                      onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                      className="w-full h-10 px-3 rounded-md border border-input bg-background"
+                      required
+                    >
+                      <option value="Аналитика">Аналитика</option>
+                      <option value="Кейсы">Кейсы</option>
+                      <option value="Автоматизация">Автоматизация</option>
+                      <option value="WMS системы">WMS системы</option>
+                      <option value="Оптимизация">Оптимизация</option>
+                    </select>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="display_order">Порядок</Label>
+                    <Label htmlFor="image_url">URL изображения</Label>
                     <Input
-                      id="display_order"
-                      type="number"
-                      value={formData.display_order}
-                      onChange={(e) => setFormData({ ...formData, display_order: parseInt(e.target.value) })}
+                      id="image_url"
+                      value={formData.image_url || ''}
+                      onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
+                      placeholder="https://example.com/image.jpg"
                     />
                   </div>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <input
-                    type="checkbox"
-                    id="is_published"
-                    checked={formData.is_published}
-                    onChange={(e) => setFormData({ ...formData, is_published: e.target.checked })}
-                    className="w-4 h-4"
-                  />
-                  <Label htmlFor="is_published">Опубликовано</Label>
                 </div>
 
                 <div className="flex gap-2">
@@ -322,14 +324,11 @@ const Admin = () => {
                       </p>
                       <div className="flex gap-2 mt-2">
                         <span className="text-xs px-2 py-1 bg-primary/10 rounded">
-                          {article.icon}
+                          {article.category}
                         </span>
-                        <span className="text-xs px-2 py-1 bg-secondary/10 rounded">
-                          #{article.display_order}
-                        </span>
-                        {article.is_published && (
-                          <span className="text-xs px-2 py-1 bg-green-100 text-green-700 rounded">
-                            Опубликовано
+                        {article.created_at && (
+                          <span className="text-xs px-2 py-1 bg-secondary/10 rounded">
+                            {new Date(article.created_at).toLocaleDateString('ru-RU')}
                           </span>
                         )}
                       </div>

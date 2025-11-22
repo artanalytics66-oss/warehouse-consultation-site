@@ -11,13 +11,14 @@ import ArticleCard from '@/components/ArticleCard';
 interface Article {
   id: number;
   title: string;
+  category: string;
   short_description: string;
   full_content: string;
-  icon: string;
-  display_order: number;
+  image_url?: string;
+  created_at?: string;
 }
 
-const API_URL = 'https://functions.poehali.dev/941f1118-e5bc-48a9-8a2d-ff4bd917dc4b';
+const API_URL = 'http://ваш-домен.ru/admin/api.php';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('');
