@@ -10,15 +10,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // Настройки подключения к MySQL
-$host = '127.0.0.1';
-$port = 3310;
+$host = 'localhost';
 $dbname = 'u3333975_default';
 $username = 'u3333975_default';
 $password = 'LIGa8tM1562U8Jxs';
 
 // Подключение к БД
 try {
-    $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4", $username, $password);
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
