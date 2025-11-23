@@ -29,6 +29,7 @@ const Index = () => {
 
   useEffect(() => {
     document.title = 'Консультации в складской логистике | Глубокая заморозка';
+    loadArticles();
   }, []);
 
   const loadArticles = async () => {
