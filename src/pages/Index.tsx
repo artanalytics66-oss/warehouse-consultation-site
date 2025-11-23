@@ -18,7 +18,7 @@ interface Article {
   created_at?: string;
 }
 
-const API_URL = 'https://functions.poehali.dev/941f1118-e5bc-48a9-8a2d-ff4bd917dc4b';
+const API_URL = 'https://skladconsulting.ru/admin/api.php';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('');
