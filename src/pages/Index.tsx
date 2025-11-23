@@ -18,7 +18,7 @@ interface Article {
   created_at?: string;
 }
 
-const API_URL = 'https://skladconsulting.ru/admin/api.php';
+const API_URL = 'https://functions.poehali.dev/941f1118-e5bc-48a9-8a2d-ff4bd917dc4b';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('');
@@ -35,8 +35,20 @@ const Index = () => {
   const loadArticles = async () => {
     try {
       const response = await fetch(API_URL);
+      if (!response.ok) throw new Error('Failed to fetch');
       const data = await response.json();
-      setArticles(data);
+      
+      const formatted = data.map((article: any) => ({
+        id: article.id,
+        title: article.title,
+        category: article.icon || 'Аналитика',
+        short_description: article.short_description,
+        full_content: article.full_content,
+        image_url: article.image_url,
+        created_at: article.created_at
+      }));
+      
+      setArticles(formatted);
     } catch (error) {
       console.error('Failed to load articles:', error);
     }

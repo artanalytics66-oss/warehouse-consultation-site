@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import Icon from '@/components/ui/icon';
 import { useToast } from '@/hooks/use-toast';
 
-const API_URL = 'https://skladconsulting.ru/admin/api.php';
+const API_URL = 'https://functions.poehali.dev/941f1118-e5bc-48a9-8a2d-ff4bd917dc4b';
 
 interface Article {
   id?: number;
@@ -53,8 +53,21 @@ const Admin = () => {
   const loadArticles = async () => {
     try {
       const response = await fetch(API_URL);
+      if (!response.ok) throw new Error('Failed');
       const data = await response.json();
-      setArticles(data);
+      
+      const formatted = data.map((article: any) => ({
+        id: article.id,
+        title: article.title,
+        category: article.icon || 'Аналитика',
+        short_description: article.short_description,
+        full_content: article.full_content,
+        image_url: article.image_url,
+        created_at: article.created_at,
+        updated_at: article.updated_at
+      }));
+      
+      setArticles(formatted);
     } catch (error) {
       toast({
         title: 'Ошибка',
@@ -69,13 +82,14 @@ const Admin = () => {
     
     try {
       const method = editingArticle ? 'PUT' : 'POST';
-      const body = editingArticle ? { ...formData, id: editingArticle.id } : formData;
+      const body = editingArticle 
+        ? { id: editingArticle.id, title: formData.title, short_description: formData.short_description, full_content: formData.full_content, icon: formData.category, image_url: formData.image_url, is_published: true, display_order: 0 }
+        : { title: formData.title, short_description: formData.short_description, full_content: formData.full_content, icon: formData.category, image_url: formData.image_url, is_published: true, display_order: 0 };
       
       const response = await fetch(API_URL, {
         method,
         headers: { 
-          'Content-Type': 'application/json',
-          'X-Admin-Auth': `${ADMIN_LOGIN}:${ADMIN_PASSWORD}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(body)
       });
@@ -102,8 +116,7 @@ const Admin = () => {
     
     try {
       await fetch(`${API_URL}?id=${id}`, { 
-        method: 'DELETE',
-        headers: { 'X-Admin-Auth': `${ADMIN_LOGIN}:${ADMIN_PASSWORD}` }
+        method: 'DELETE'
       });
       toast({ title: 'Успех', description: 'Статья удалена' });
       loadArticles();
