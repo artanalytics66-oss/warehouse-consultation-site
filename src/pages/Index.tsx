@@ -51,6 +51,7 @@ const Index = () => {
       setArticles(formatted);
     } catch (error) {
       console.error('Failed to load articles:', error);
+      setArticles([]);
     }
   };
 
