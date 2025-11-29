@@ -11,14 +11,15 @@ import ArticleCard from '@/components/ArticleCard';
 interface Article {
   id: number;
   title: string;
-  category: string;
+  icon: string;
   short_description: string;
   full_content: string;
-  image_url?: string;
   created_at?: string;
+  is_published?: boolean;
+  display_order?: number;
 }
 
-const API_URL = 'https://www.skladconsulting.ru/admin/api.php';
+const ARTICLES_API = 'https://functions.poehali.dev/941f1118-e5bc-48a9-8a2d-ff4bd917dc4b';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('');
@@ -33,7 +34,15 @@ const Index = () => {
   }, []);
 
   const loadArticles = async () => {
-    setArticles([]);
+    try {
+      const response = await fetch(ARTICLES_API);
+      if (response.ok) {
+        const data = await response.json();
+        setArticles(data.slice(0, 3));
+      }
+    } catch (error) {
+      console.error('Failed to load articles:', error);
+    }
   };
 
   const toggleArticle = (id: number) => {

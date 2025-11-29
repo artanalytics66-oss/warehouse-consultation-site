@@ -28,7 +28,8 @@ const ArticleView = () => {
       const response = await fetch(`https://functions.poehali.dev/941f1118-e5bc-48a9-8a2d-ff4bd917dc4b?id=${id}`);
       
       if (!response.ok) {
-        throw new Error('Статья не найдена');
+        setError('Статья не найдена');
+        return;
       }
       
       const data = await response.json();
