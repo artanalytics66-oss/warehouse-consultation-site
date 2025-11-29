@@ -89,7 +89,8 @@ const Admin = () => {
       const response = await fetch(API_URL, {
         method,
         headers: { 
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'X-Admin-Auth': `${ADMIN_LOGIN}:${ADMIN_PASSWORD}`
         },
         body: JSON.stringify(body)
       });
@@ -116,7 +117,10 @@ const Admin = () => {
     
     try {
       await fetch(`${API_URL}?id=${id}`, { 
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: { 
+          'X-Admin-Auth': `${ADMIN_LOGIN}:${ADMIN_PASSWORD}`
+        }
       });
       toast({ title: 'Успех', description: 'Статья удалена' });
       loadArticles();
