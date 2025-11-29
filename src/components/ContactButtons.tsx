@@ -4,7 +4,7 @@ const ContactButtons = () => {
   const phoneNumber = '79126734195';
   const telegramUsername = 'LMikhail67';
   
-  const whatsappUrl = `https://wa.me/${phoneNumber}`;
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=Здравствуйте!%20Хочу%20получить%20консультацию`;
   const telegramUrl = `https://t.me/${telegramUsername}`;
 
   return (
