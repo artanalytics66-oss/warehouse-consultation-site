@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -27,6 +28,7 @@ const Index = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [expandedArticles, setExpandedArticles] = useState<{ [key: number]: boolean }>({});
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = 'Консультации в складской логистике | Глубокая заморозка';
@@ -165,6 +167,10 @@ const Index = () => {
               <Button onClick={() => scrollToSection('contact')} size="sm" className="text-xs px-3 py-2">
                 Записаться на консультацию
               </Button>
+              <Button onClick={() => navigate('/admin')} variant="ghost" size="sm" className="text-xs px-3 py-2">
+                <Icon name="Lock" size={14} className="mr-1" />
+                Вход
+              </Button>
             </nav>
             <Button
               variant="ghost"
@@ -219,6 +225,10 @@ const Index = () => {
               </button>
               <Button onClick={() => scrollToSection('contact')} size="sm" className="mt-4 w-full">
                 Записаться на консультацию
+              </Button>
+              <Button onClick={() => navigate('/admin')} variant="outline" size="sm" className="w-full">
+                <Icon name="Lock" size={14} className="mr-2" />
+                Вход в админ-панель
               </Button>
             </nav>
           </div>
